@@ -22,5 +22,6 @@ RSpec.describe Dictionary do
 
     it 'can convert letters to braille' do
       expect(@dictionary.english_to_braille("a")).to eq([[0, "."], [".", "."], [".", "."]])
+    end
   end
 end

@@ -34,4 +34,8 @@ class Dictionary
       "z" => [[0, "."], [".", 0], [0, 0]]
     }
   end
+
+  def english_to_braille(character)
+    @alphabet[character]
+  end
 end
