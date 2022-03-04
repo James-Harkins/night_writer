@@ -1,18 +1,20 @@
+require 'dictionary'
 require 'pry'
 
 class FileReader
 
-  attr_reader :filename
+  attr_reader :filename, :dictionary
 
   def initialize(filename)
     @filename = filename
+    @dictionary = Dictionary.new
   end
 
   def read(filename)
     file = File.open(filename, "r")
     text = file.read
     file.close
-    text
+    text.delete("\n")
   end
 
   def count_characters(filename)
@@ -27,4 +29,8 @@ class FileReader
     new_file
   end
 
+  def convert_to_braille
+    text = read(@filename)
+    @dictionary.english_to_braille(text)
+  end
 end
