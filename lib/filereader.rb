@@ -1,4 +1,4 @@
-require 'dictionary'
+require_relative '../lib/dictionary'
 require 'pry'
 
 class FileReader
@@ -24,13 +24,18 @@ class FileReader
 
   def create_new_file(new_filename)
     new_file = File.open(new_filename, "w")
-    new_file.write(read(@filename))
+    new_file.write(convert_to_braille[0])
+    new_file.write(convert_to_braille[1])
+    new_file.write(convert_to_braille[2])
     new_file.close
     new_file
   end
 
   def convert_to_braille
     text = read(@filename)
-    @dictionary.english_to_braille(text)
+    row1 = @dictionary.english_to_braille(text)[0].join + "\n"
+    row2 = @dictionary.english_to_braille(text)[1].join + "\n"
+    row3 = @dictionary.english_to_braille(text)[2].join + "\n"
+    [row1, row2, row3]
   end
 end
