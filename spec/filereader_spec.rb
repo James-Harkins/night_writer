@@ -32,4 +32,10 @@ RSpec.describe FileReader do
       expect(@filereader.create_new_file("braille.txt")).to be_a(File)
     end
   end
+
+  describe '#convert_to_braille' do
+    it 'can read text and convert it to braille' do
+      expect(@filereader.convert_to_braille(text)).to eq(Array)
+    end
+  end
 end
