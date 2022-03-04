@@ -20,4 +20,9 @@ class FileReader
     text.length
   end
 
+  def create_new_file(new_filename)
+    new_file = File.open(new_filename, "w")
+    new_file
+  end
+
 end
