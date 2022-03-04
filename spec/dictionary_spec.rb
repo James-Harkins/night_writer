@@ -10,7 +10,8 @@ RSpec.describe Dictionary do
   describe '#initialze' do
     it 'is initialized with an alphabet to braille hash' do
       expect(@dictionary.alphabet).to be_a(Hash)
-      expect(@dictionary.alphabet["a"]).to be_a(Matrix)
+      expect(@dictionary.alphabet["a"]).to be_a(Array)
+      expect(@dictionary.alphabet.all? {|key, value| value.length == 3}).to be(true)
     end
 
     it 'has unique keys' do
