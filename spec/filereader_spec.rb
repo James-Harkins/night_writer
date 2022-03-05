@@ -13,6 +13,11 @@ RSpec.describe FileReader do
     it 'is initialized with a filename' do
       expect(@filereader.filename).to eq("./message.txt")
     end
+
+    it 'is initialized with a dictionary' do
+      expect(@filereader.dictionary).to be_a(Dictionary)
+      expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
+    end
   end
 
   describe '#read' do
@@ -23,13 +28,21 @@ RSpec.describe FileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(56)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(2)
     end
   end
 
   describe '#create_new_file' do
     it 'can create a new file' do
       expect(@filereader.create_new_file("braille.txt")).to be_a(File)
+    end
+  end
+
+  describe '#convert_to_braille' do
+    it 'can read text and convert it to braille' do
+      expect(@filereader.convert_to_braille).to be_a(Array)
+      expect(@filereader.convert_to_braille[0]).to be_a(Array)
+      expect(@filereader.convert_to_braille.count).to eq(3)
     end
   end
 end
