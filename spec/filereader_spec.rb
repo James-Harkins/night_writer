@@ -45,4 +45,17 @@ RSpec.describe FileReader do
       expect(@filereader.convert_to_braille.count).to eq(3)
     end
   end
+
+  describe '#convert_to_braille_40' do
+    it 'can create correctly nested arrays for inputs with more than 40 characters' do
+      text = "we will always be so much more human than we wish to be"
+      expect(@filereader.convert_to_braille_40(text).count).to eq(6)
+      expect(@filereader.convert_to_braille_40(text)[0]).to eq(40)
+      expect(@filereader.convert_to_braille_40(text)[1]).to eq(40)
+      expect(@filereader.convert_to_braille_40(text)[2]).to eq(40)
+      expect(@filereader.convert_to_braille_40(text)[2]).to eq(15)
+      expect(@filereader.convert_to_braille_40(text)[2]).to eq(15)
+      expect(@filereader.convert_to_braille_40(text)[2]).to eq(15)
+    end
+  end
 end
