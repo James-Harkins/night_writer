@@ -3,10 +3,10 @@ require 'pry'
 require 'simplecov'
 SimpleCov.start
 
-RSpec.describe FileReader do
+RSpec.describe EnglishFileReader do
 
   before(:each) do
-    @filereader = FileReader.new("./message.txt")
+    @filereader = EnglishFileReader.new("./message.txt")
   end
 
   describe '#initialize' do
@@ -22,7 +22,7 @@ RSpec.describe FileReader do
 
   describe '#read' do
     it 'can create a readable File object with the filename attribute' do
-      expect(@filereader.read(@filereader.filename)).to be_a(String)
+      expect(@filereader.read_english(@filereader.filename)).to be_a(String)
     end
   end
 
@@ -55,9 +55,9 @@ RSpec.describe FileReader do
     end
   end
 
-  describe '#convert_braille_string_to_characters' do
-    it 'can convert a string of braille characters into nested arrays representing one character each' do
-      expect(@filereader.convert_braille_string_to_characters("0.....")).to eq([[0, "."], [".", "."], [".", "."]])
-    end
-  end
+  # describe '#convert_braille_string_to_characters' do
+  #   it 'can convert a string of braille characters into nested arrays representing one character each' do
+  #     expect(@filereader.convert_braille_string_to_characters("0.....")).to eq([[0, "."], [".", "."], [".", "."]])
+  #   end
+  # end
 end
