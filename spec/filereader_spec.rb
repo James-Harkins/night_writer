@@ -40,9 +40,9 @@ RSpec.describe FileReader do
 
   describe '#convert_to_braille' do
     it 'can read text and convert it to braille' do
-      expect(@filereader.convert_to_braille).to be_a(Array)
-      expect(@filereader.convert_to_braille[0]).to be_a(Array)
-      expect(@filereader.convert_to_braille.count).to eq(3)
+      expect(@filereader.convert_to_braille("a")).to be_a(Array)
+      expect(@filereader.convert_to_braille("a")[0]).to be_a(Array)
+      expect(@filereader.convert_to_braille("a").count).to eq(3)
     end
   end
 
