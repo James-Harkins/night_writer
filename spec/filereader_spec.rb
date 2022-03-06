@@ -34,7 +34,7 @@ RSpec.describe FileReader do
 
   describe '#create_new_file' do
     it 'can create a new file' do
-      expect(@filereader.create_new_file("braille.txt")).to be_a(File)
+      expect(@filereader.create_new_braille_file("braille.txt")).to be_a(File)
     end
   end
 

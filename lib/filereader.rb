@@ -22,7 +22,7 @@ class FileReader
     text.length
   end
 
-  def create_new_file(new_filename)
+  def create_new_braille_file(new_filename)
     new_file = File.open(new_filename, "w")
     convert_to_lines(read(@filename)).each do |line|
       convert_to_braille(line).each do |braille_character|
