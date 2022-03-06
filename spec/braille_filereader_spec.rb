@@ -31,4 +31,11 @@ RSpec.describe BrailleFileReader do
       expect(@filereader.count_characters(@filereader.filename)).to eq(55)
     end
   end
+
+  describe '#create_lines' do
+    it 'can create an array of three long strings of partial braille characters' do
+      expect(@filereader.create_lines).to be_a(Array)
+      expect(@filereader.create_lines.count).to eq(3)
+    end
+  end 
 end

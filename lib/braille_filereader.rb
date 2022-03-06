@@ -12,10 +12,12 @@ class BrailleFileReader
 
   def read(filename)
     file = File.open(filename, "r")
-    text = file.readlines
+    text = file.read.split("")
     file.close
-    text.map {|line| line.delete("\n")}
+    text
   end
+
+  text.each_slice(character_count) {|line| lines << line}
 
   def count_characters(filename)
     text = read(filename)
