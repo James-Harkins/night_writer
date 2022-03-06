@@ -39,4 +39,8 @@ class Dictionary
   def english_to_braille(character)
     @alphabet[character]
   end
+
+  def braille_to_english(character)
+    @alphabet.key(character)
+  end
 end
