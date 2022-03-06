@@ -48,4 +48,5 @@ class FileReader
     text.each_slice(40) {|line| lines << line}
     lines
   end
+
 end
