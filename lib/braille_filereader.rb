@@ -26,7 +26,7 @@ class BrailleFileReader
     consolidated_lines = ["", "", ""]
     text = read(@filename)
     text.each_with_index {|line, index| consolidated_lines[index % 3] << line}
-    
+    consolidated_lines
     # consolidated_lines = []
     # top_row_number = 3
     # middle_row_number = 4
@@ -43,6 +43,5 @@ class BrailleFileReader
     #   consolidated_lines[2] << text[bottom_row_number]
     #   bottom_row_number += 3
     # end
-    consolidated_lines
   end
 end
