@@ -44,4 +44,22 @@ class BrailleFileReader
     #   bottom_row_number += 3
     # end
   end
+
+  def convert_to_braille_characters
+    braille_characters = []
+    column_1_counter = 0
+    column_2_counter = 1
+    while consolidate_lines[0][column_1_counter]
+      braille_character = []
+      braille_character << consolidate_lines[0][column_1_counter..column_2_counter].split("")
+      braille_character << consolidate_lines[1][column_1_counter..column_2_counter].split("")
+      braille_character << consolidate_lines[2][column_1_counter..column_2_counter].split("")
+      braille_characters << braille_character
+      braille_character = []
+      column_1_counter += 2
+      column_2_counter += 2
+    end
+    binding.pry
+    braille_characters
+  end
 end

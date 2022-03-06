@@ -1,4 +1,4 @@
-require_relative '../lib/filereader'
+require_relative '../lib/english_filereader'
 require 'pry'
 
 filereader = EnglishFileReader.new(ARGV[0])

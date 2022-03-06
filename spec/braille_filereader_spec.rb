@@ -39,10 +39,11 @@ RSpec.describe BrailleFileReader do
     end
   end
 
-  describe '#convert_to_english' do
-    it 'can convert consolidated_lines to of english characters' do
-      expect(@filereader.convert_to_english).to be_a(Array)
-      expect(@filereader.convert_to_english[0]).to be_a(String)
+  describe '#convert_to_braille_characters' do
+    it 'can convert consolidated_lines to an array of single braille characters' do
+      expect(@filereader.convert_to_braille_characters).to be_a(Array)
+      expect(@filereader.convert_to_braille_characters.count).to eq(55)
+      expect(@filereader.convert_to_braille_characters[0]).to be_a(Array)
     end
   end
 end
