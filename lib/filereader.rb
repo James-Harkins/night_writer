@@ -24,16 +24,17 @@ class FileReader
 
   def create_new_file(new_filename)
     new_file = File.open(new_filename, "w")
-    convert_to_braille.each do |braille_character|
-      new_file.write(braille_character.join + "\n")
+    convert_to_lines(read(@filename)).each do |line|
+      convert_to_braille(line).each do |braille_character|
+        new_file.write(braille_character.join + "\n")
+      end
     end
     new_file.close
     new_file
   end
 
-  def convert_to_braille
+  def convert_to_braille(text)
     rows = [[], [], []]
-    text = read(@filename).split("")
     text.each do |character|
       rows[0] << @dictionary.english_to_braille(character)[0].join
       rows[1] << @dictionary.english_to_braille(character)[1].join
@@ -41,4 +42,12 @@ class FileReader
     end
     rows
   end
+
+  def convert_to_lines(text)
+    lines = []
+    text = text.split("")
+    text.each_slice(40) {|line| lines << line}
+    lines
+  end
+
 end

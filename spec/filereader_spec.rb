@@ -28,7 +28,7 @@ RSpec.describe FileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(2)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
     end
   end
 
@@ -40,9 +40,18 @@ RSpec.describe FileReader do
 
   describe '#convert_to_braille' do
     it 'can read text and convert it to braille' do
-      expect(@filereader.convert_to_braille).to be_a(Array)
-      expect(@filereader.convert_to_braille[0]).to be_a(Array)
-      expect(@filereader.convert_to_braille.count).to eq(3)
+      expect(@filereader.convert_to_braille(["a"])).to be_a(Array)
+      expect(@filereader.convert_to_braille(["a"])[0]).to be_a(Array)
+      expect(@filereader.convert_to_braille(["a"]).count).to eq(3)
+    end
+  end
+
+  describe '#convert_to_lines' do
+    it 'can create correctly nested arrays for inputs with more than 40 characters' do
+      text = "we will always be so much more human than we wish to be"
+      expect(@filereader.convert_to_lines(text).count).to eq(2)
+      expect(@filereader.convert_to_lines(text)[0].count).to eq(40)
+      expect(@filereader.convert_to_lines(text)[1].count).to eq(15)
     end
   end
 end
