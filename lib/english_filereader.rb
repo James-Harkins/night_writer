@@ -1,7 +1,7 @@
 require_relative '../lib/dictionary'
 require 'pry'
 
-class FileReader
+class EnglishFileReader
 
   attr_reader :filename, :dictionary
 
@@ -22,7 +22,7 @@ class FileReader
     text.length
   end
 
-  def create_new_file(new_filename)
+  def create_new_braille_file(new_filename)
     new_file = File.open(new_filename, "w")
     convert_to_lines(read(@filename)).each do |line|
       convert_to_braille(line).each do |braille_character|
@@ -49,5 +49,4 @@ class FileReader
     text.each_slice(40) {|line| lines << line}
     lines
   end
-
 end
