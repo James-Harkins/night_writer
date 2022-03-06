@@ -54,4 +54,10 @@ RSpec.describe BrailleFileReader do
       expect(@filereader.convert_to_english[0]).to eq("w")
     end
   end
+
+  describe '#create_new_file' do
+    it 'can create a new file' do
+      expect(@filereader.create_new_english_file("translated_message.txt")).to be_a(File)
+    end
+  end
 end
