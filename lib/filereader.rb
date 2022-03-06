@@ -22,22 +22,20 @@ class FileReader
     text.length
   end
 
-  # def create_new_file(new_filename)
-  #   new_file = File.open(new_filename, "w")
-  #   binding.pry
-  #   convert_to_lines(read(@filename)).each do |line|
-  #     convert_to_braille.each do |braille_character|
-  #       new_file.write(braille_character.join + "\n")
-  #     end
-  #   end
-  #   new_file.close
-  #   new_file
-  # end
+  def create_new_file(new_filename)
+    new_file = File.open(new_filename, "w")
+    convert_to_lines(read(@filename)).each do |line|
+      convert_to_braille(line).each do |braille_character|
+        new_file.write(braille_character.join + "\n")
+      end
+    end
+    new_file.close
+    new_file
+  end
 
   def convert_to_braille(text)
     rows = [[], [], []]
-    text_array = text.split("")
-    text_array.each do |character|
+    text.each do |character|
       rows[0] << @dictionary.english_to_braille(character)[0].join
       rows[1] << @dictionary.english_to_braille(character)[1].join
       rows[2] << @dictionary.english_to_braille(character)[2].join
