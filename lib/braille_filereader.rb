@@ -51,4 +51,11 @@ class BrailleFileReader
       @dictionary.braille_to_english(braille_character)
     end
   end
+
+  def create_new_english_file(new_filename)
+    new_file = File.open(new_filename, "w")
+    convert_to_english.each {|character| new_file.write(character)}
+    new_file.close
+    new_file
+  end
 end
