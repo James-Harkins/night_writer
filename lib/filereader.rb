@@ -41,4 +41,11 @@ class FileReader
     end
     rows
   end
+
+  def convert_to_lines(text)
+    lines = []
+    text = text.split("")
+    text.each_slice(40) {|line| lines << line}
+    lines
+  end
 end
