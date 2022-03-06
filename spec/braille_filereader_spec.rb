@@ -21,7 +21,7 @@ RSpec.describe BrailleFileReader do
   end
 
   describe '#read' do
-    it 'can create a readable File object with the filename attribute' do
+    it 'can create a readable array of lines of partial braille characters with the filename attribute' do
       expect(@filereader.read(@filereader.filename)).to be_a(Array)
     end
   end
@@ -32,10 +32,10 @@ RSpec.describe BrailleFileReader do
     end
   end
 
-  describe '#create_lines' do
-    it 'can create an array of three long strings of partial braille characters' do
-      expect(@filereader.create_lines).to be_a(Array)
-      expect(@filereader.create_lines.count).to eq(3)
+  describe '#consolidate_lines' do
+    it 'can take all lines of braille and consolidate into 3 total lines for one long array of braille' do
+      expect(@filereader.consolidate_lines).to be_a(Array)
+      expect(@filereader.consolidate_lines.count).to eq(3)
     end
-  end 
+  end
 end
