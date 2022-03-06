@@ -1,5 +1,4 @@
 require_relative '../lib/english_filereader'
-require 'pry'
 
 filereader = EnglishFileReader.new(ARGV[0])
 character_count = filereader.count_characters(ARGV[0])
