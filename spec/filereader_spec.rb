@@ -54,4 +54,10 @@ RSpec.describe FileReader do
       expect(@filereader.convert_to_lines(text)[1].count).to eq(15)
     end
   end
+
+  describe '#convert_braille_string_to_characters' do
+    it 'can convert a string of braille characters into nested arrays representing one character each' do
+      expect(@filereader.convert_braille_string_to_characters("0.....")).to eq([[0, "."], [".", "."], [".", "."]])
+    end
+  end
 end
