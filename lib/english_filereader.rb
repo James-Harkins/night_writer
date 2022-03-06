@@ -10,7 +10,7 @@ class EnglishFileReader
     @dictionary = Dictionary.new
   end
 
-  def read_english(filename)
+  def read(filename)
     file = File.open(filename, "r")
     text = file.read
     file.close
@@ -18,13 +18,13 @@ class EnglishFileReader
   end
 
   def count_characters(filename)
-    text = read_english(filename)
+    text = read(filename)
     text.length
   end
 
   def create_new_braille_file(new_filename)
     new_file = File.open(new_filename, "w")
-    convert_to_lines(read_english(@filename)).each do |line|
+    convert_to_lines(read(@filename)).each do |line|
       convert_to_braille(line).each do |braille_character|
         new_file.write(braille_character.join + "\n")
       end
@@ -49,8 +49,4 @@ class EnglishFileReader
     text.each_slice(40) {|line| lines << line}
     lines
   end
-
-  # def convert_braille_string_to_characters(string)
-  #
-  # end
 end

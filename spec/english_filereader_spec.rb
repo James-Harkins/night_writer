@@ -1,4 +1,4 @@
-require_relative "../lib/filereader"
+require_relative "../lib/english_filereader"
 require 'pry'
 require 'simplecov'
 SimpleCov.start
@@ -22,7 +22,7 @@ RSpec.describe EnglishFileReader do
 
   describe '#read' do
     it 'can create a readable File object with the filename attribute' do
-      expect(@filereader.read_english(@filereader.filename)).to be_a(String)
+      expect(@filereader.read(@filereader.filename)).to be_a(String)
     end
   end
 
