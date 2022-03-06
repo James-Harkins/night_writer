@@ -31,15 +31,11 @@ class BrailleFileReader
     consolidated_lines << text[0]
     consolidated_lines << text[1]
     consolidated_lines << text[2]
-    while text[top_row_number]
+    while text[top_row_number] && text[middle_row_number] && text[bottom_row_number]
       consolidated_lines[0] << text[top_row_number]
       top_row_number += 3
-    end
-    while text[middle_row_number]
       consolidated_lines[1] << text[middle_row_number]
       middle_row_number += 3
-    end
-    while text[bottom_row_number]
       consolidated_lines[2] << text[bottom_row_number]
       bottom_row_number += 3
     end
