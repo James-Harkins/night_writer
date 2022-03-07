@@ -43,10 +43,10 @@ RSpec.describe EnglishFileReader do
 
   describe '#convert_to_lines' do
     it 'can create correctly nested arrays for inputs with more than 40 characters' do
-      text = "we will always be so much more human than we wish to be"
+      text = "We will always be so much more human than we wish to be"
       expect(@filereader.convert_to_lines(text).count).to eq(2)
       expect(@filereader.convert_to_lines(text)[0].count).to eq(40)
-      expect(@filereader.convert_to_lines(text)[1].count).to eq(15)
+      expect(@filereader.convert_to_lines(text)[1].count).to eq(16)
     end
   end
 

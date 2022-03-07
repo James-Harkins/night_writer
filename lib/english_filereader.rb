@@ -43,7 +43,15 @@ class EnglishFileReader
   def convert_to_lines(text)
     lines = []
     text = text.split("")
-    text.each_slice(40) {|line| lines << line}
+    formatted_text = text.map do |character|
+      if capital_letters.include?(character)
+        character.downcase.prepend("^")
+      else
+        character
+      end
+    end.join
+    formatted_text = formatted_text.split("")
+    formatted_text.each_slice(40) {|line| lines << line}
     lines
   end
 
