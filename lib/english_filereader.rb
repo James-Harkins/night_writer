@@ -24,11 +24,7 @@ class EnglishFileReader
 
   def create_new_braille_file(new_filename)
     new_file = File.open(new_filename, "w")
-    convert_to_lines(read(@filename)).each do |line|
-      convert_to_braille(line).each do |braille_character|
-        new_file.write(braille_character.join + "\n")
-      end
-    end
+    create_braille_message.each {|line| new_file.write(line)}
     new_file.close
     new_file
   end
@@ -48,5 +44,15 @@ class EnglishFileReader
     text = text.split("")
     text.each_slice(40) {|line| lines << line}
     lines
+  end
+
+  def create_braille_message
+    braille_lines = []
+    convert_to_lines(read(@filename)).each do |line|
+      convert_to_braille(line).each do |braille_character|
+        braille_lines << braille_character.join + "\n"
+      end
+    end
+    braille_lines
   end
 end

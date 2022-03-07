@@ -28,7 +28,7 @@ RSpec.describe EnglishFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(80)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
     end
   end
 
@@ -59,7 +59,7 @@ RSpec.describe EnglishFileReader do
     it 'can create a writable braille message to be written to the new file' do
       expect(@filereader.create_braille_message).to be_a(Array)
       expect(@filereader.create_braille_message.count).to eq(6)
-      expect(@filereader.create_braille_message[0].count).to eq(80)
+      expect(@filereader.create_braille_message[0].length).to eq(81)
     end
-  end   
+  end
 end
