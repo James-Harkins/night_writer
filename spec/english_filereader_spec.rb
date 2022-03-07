@@ -14,10 +14,10 @@ RSpec.describe EnglishFileReader do
       expect(@filereader.filename).to eq("./message.txt")
     end
 
-    it 'is initialized with a dictionary' do
-      expect(@filereader.dictionary).to be_a(Dictionary)
-      expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
-    end
+    # it 'is initialized with a dictionary' do
+    #   expect(@filereader.dictionary).to be_a(Dictionary)
+    #   expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
+    # end
   end
 
   describe '#read' do

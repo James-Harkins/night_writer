@@ -3,11 +3,12 @@ require 'pry'
 
 class BrailleFileReader
 
-  attr_reader :filename, :dictionary
+  include Dictionary
+
+  attr_reader :filename
 
   def initialize(filename)
     @filename = filename
-    @dictionary = Dictionary.new
   end
 
   def read(filename)
@@ -48,7 +49,7 @@ class BrailleFileReader
 
   def convert_to_english
     convert_to_braille_characters.map do |braille_character|
-      @dictionary.braille_to_english(braille_character)
+      braille_to_english(braille_character)
     end
   end
 

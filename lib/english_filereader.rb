@@ -3,11 +3,12 @@ require 'pry'
 
 class EnglishFileReader
 
-  attr_reader :filename, :dictionary
+  include Dictionary
+
+  attr_reader :filename
 
   def initialize(filename)
     @filename = filename
-    @dictionary = Dictionary.new
   end
 
   def read(filename)
@@ -32,9 +33,9 @@ class EnglishFileReader
   def convert_to_braille(text)
     rows = [[], [], []]
     text.each do |character|
-      rows[0] << @dictionary.english_to_braille(character)[0].join
-      rows[1] << @dictionary.english_to_braille(character)[1].join
-      rows[2] << @dictionary.english_to_braille(character)[2].join
+      rows[0] << english_to_braille(character)[0].join
+      rows[1] << english_to_braille(character)[1].join
+      rows[2] << english_to_braille(character)[2].join
     end
     rows
   end

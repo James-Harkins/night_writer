@@ -13,11 +13,11 @@ RSpec.describe BrailleFileReader do
     it 'is initialized with a filename' do
       expect(@filereader.filename).to eq("./braille.txt")
     end
-
-    it 'is initialized with a dictionary' do
-      expect(@filereader.dictionary).to be_a(Dictionary)
-      expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
-    end
+    # 
+    # it 'is initialized with a dictionary' do
+    #   expect(@filereader.dictionary).to be_a(Dictionary)
+    #   expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
+    # end
   end
 
   describe '#read' do
