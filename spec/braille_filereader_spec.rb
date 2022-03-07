@@ -13,11 +13,6 @@ RSpec.describe BrailleFileReader do
     it 'is initialized with a filename' do
       expect(@filereader.filename).to eq("./braille.txt")
     end
-    # 
-    # it 'is initialized with a dictionary' do
-    #   expect(@filereader.dictionary).to be_a(Dictionary)
-    #   expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
-    # end
   end
 
   describe '#read' do
@@ -28,7 +23,7 @@ RSpec.describe BrailleFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(56)
     end
   end
 
@@ -42,7 +37,7 @@ RSpec.describe BrailleFileReader do
   describe '#convert_to_braille_characters' do
     it 'can convert consolidated_lines to an array of single braille characters' do
       expect(@filereader.convert_to_braille_characters).to be_a(Array)
-      expect(@filereader.convert_to_braille_characters.count).to eq(55)
+      expect(@filereader.convert_to_braille_characters.count).to eq(56)
       expect(@filereader.convert_to_braille_characters[0]).to be_a(Array)
     end
   end
@@ -50,7 +45,7 @@ RSpec.describe BrailleFileReader do
   describe '#convert_to_english' do
     it 'can convert an array of braille characters to an array of english characters' do
       expect(@filereader.convert_to_english).to be_a(Array)
-      expect(@filereader.convert_to_english.count).to eq(55)
+      expect(@filereader.convert_to_english.count).to eq(56)
       expect(@filereader.convert_to_english[0]).to eq("w")
     end
   end
@@ -58,7 +53,7 @@ RSpec.describe BrailleFileReader do
   describe '#convert_to_lines' do
     it 'can convert an array of english characters to strings of a max of 80 characters' do
       expect(@filereader.convert_to_lines).to be_a(Array)
-      expect(@filereader.convert_to_lines[0].length).to eq(56)
+      expect(@filereader.convert_to_lines[0].length).to eq(57)
     end
   end
 

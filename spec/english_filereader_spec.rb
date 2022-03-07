@@ -13,11 +13,6 @@ RSpec.describe EnglishFileReader do
     it 'is initialized with a filename' do
       expect(@filereader.filename).to eq("./message.txt")
     end
-
-    # it 'is initialized with a dictionary' do
-    #   expect(@filereader.dictionary).to be_a(Dictionary)
-    #   expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
-    # end
   end
 
   describe '#read' do
@@ -28,7 +23,7 @@ RSpec.describe EnglishFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(56)
     end
   end
 

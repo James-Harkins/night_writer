@@ -15,7 +15,7 @@ class EnglishFileReader
     file = File.open(filename, "r")
     text = file.read
     file.close
-    text.delete("\n")
+    text.gsub("\n", " ")
   end
 
   def count_characters(filename)
