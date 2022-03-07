@@ -56,10 +56,10 @@ RSpec.describe EnglishFileReader do
   end
 
   describe '#create_braille_message' do
-    it 'can create a braille message to be written to a new file' do
+    it 'can create a writable braille message to be written to the new file' do
       expect(@filereader.create_braille_message).to be_a(Array)
-      expect(@filereader.create_braille_message[0]).to be_a(String)
-      expect(@filereader.create_braille_message[0].length).to be_a(80)
+      expect(@filereader.create_braille_message.count).to eq(6)
+      expect(@filereader.create_braille_message[0].count).to eq(80)
     end
-  end
+  end   
 end
