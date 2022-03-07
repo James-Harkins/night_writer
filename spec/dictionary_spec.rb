@@ -8,20 +8,6 @@ RSpec.describe Dictionary do
     @filereader = EnglishFileReader.new("./message.txt")
   end
 
-  describe '#initialze' do
-    it 'is initialized with an alphabet to braille hash' do
-      expect(@filereader.alphabet).to be_a(Hash)
-      expect(@filereader.alphabet["a"]).to be_a(Array)
-      expect(@filereader.alphabet["a"]).to eq([["0", "."], [".", "."], [".", "."]])
-      expect(@filereader.alphabet.all? {|key, value| value.length == 3}).to be(true)
-    end
-
-    it 'has unique keys' do
-      expected = (@filereader.alphabet.keys.count == @filereader.alphabet.keys.uniq.count)
-      expect(expected).to be(true)
-    end
-  end
-
   describe '#english_to_braille' do
     it 'can convert letters to braille' do
       expect(@filereader.english_to_braille("a")).to eq([["0", "."], [".", "."], [".", "."]])
@@ -40,7 +26,7 @@ RSpec.describe Dictionary do
 
     it 'supports capitalization' do
       braille = [[".", "."], [".", "."], [".", "0"], ["0", "."], [".", "."], [".", "."]]
-      expect(@filereader.english_to_braille(braille)).to eq("A")
+      expect(@filereader.braille_to_english(braille)).to eq("A")
     end
   end
 end
