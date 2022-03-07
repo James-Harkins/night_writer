@@ -55,6 +55,13 @@ RSpec.describe BrailleFileReader do
     end
   end
 
+  describe '#convert_to_lines' do
+    it 'can convert an array of english characters to strings of a max of 80 characters' do
+      expect(@filereader.convert_to_lines).to be_a(Array)
+      expect(@filereader.convert_to_lines[0].length).to eq(80)
+    end
+  end
+
   describe '#create_new_english_file' do
     it 'can create a new file' do
       expect(@filereader.create_new_english_file("translated_message.txt")).to be_a(File)
