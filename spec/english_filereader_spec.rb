@@ -28,7 +28,7 @@ RSpec.describe EnglishFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(156)
     end
   end
 
