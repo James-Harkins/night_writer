@@ -3,11 +3,12 @@ require 'pry'
 
 class BrailleFileReader
 
-  attr_reader :filename, :dictionary
+  include Dictionary
+
+  attr_reader :filename
 
   def initialize(filename)
     @filename = filename
-    @dictionary = Dictionary.new
   end
 
   def read(filename)
@@ -30,25 +31,22 @@ class BrailleFileReader
   end
 
   def convert_to_braille_characters
+    lines = consolidate_lines
     braille_characters = []
-    column_1_counter = 0
-    column_2_counter = 1
-    while consolidate_lines[0][column_1_counter]
+    while lines[0][0]
       braille_character = []
-      braille_character << consolidate_lines[0][column_1_counter..column_2_counter].split("")
-      braille_character << consolidate_lines[1][column_1_counter..column_2_counter].split("")
-      braille_character << consolidate_lines[2][column_1_counter..column_2_counter].split("")
+      braille_character << lines[0].slice!(0..1).split("")
+      braille_character << lines[1].slice!(0..1).split("")
+      braille_character << lines[2].slice!(0..1).split("")
       braille_characters << braille_character
       braille_character = []
-      column_1_counter += 2
-      column_2_counter += 2
     end
     braille_characters
   end
 
   def convert_to_english
     convert_to_braille_characters.map do |braille_character|
-      @dictionary.braille_to_english(braille_character)
+      braille_to_english(braille_character)
     end
   end
 

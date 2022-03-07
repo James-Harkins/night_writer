@@ -14,10 +14,10 @@ RSpec.describe EnglishFileReader do
       expect(@filereader.filename).to eq("./message.txt")
     end
 
-    it 'is initialized with a dictionary' do
-      expect(@filereader.dictionary).to be_a(Dictionary)
-      expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
-    end
+    # it 'is initialized with a dictionary' do
+    #   expect(@filereader.dictionary).to be_a(Dictionary)
+    #   expect(@filereader.dictionary.alphabet["a"]).to be_a(Array)
+    # end
   end
 
   describe '#read' do
@@ -28,7 +28,7 @@ RSpec.describe EnglishFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(156)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(55)
     end
   end
 
@@ -55,9 +55,11 @@ RSpec.describe EnglishFileReader do
     end
   end
 
-  # describe '#convert_braille_string_to_characters' do
-  #   it 'can convert a string of braille characters into nested arrays representing one character each' do
-  #     expect(@filereader.convert_braille_string_to_characters("0.....")).to eq([[0, "."], [".", "."], [".", "."]])
-  #   end
-  # end
+  describe '#create_braille_message' do
+    it 'can create a writable braille message to be written to the new file' do
+      expect(@filereader.create_braille_message).to be_a(Array)
+      expect(@filereader.create_braille_message.count).to eq(6)
+      expect(@filereader.create_braille_message[0].length).to eq(81)
+    end
+  end
 end

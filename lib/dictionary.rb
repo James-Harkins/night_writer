@@ -1,17 +1,15 @@
 require 'pry'
 
-class Dictionary
+module Dictionary
 
-  attr_reader :alphabet
-
-  def initialize
-    @alphabet = {
+  def alphabet
+    {
       "a" => [["0", "."], [".", "."], [".", "."]],
       "b" => [["0", "."], ["0", "."], [".", "."]],
       "c" => [["0", "0"], [".", "."], [".", "."]],
       "d" => [["0", "0"], [".", "0"], [".", "."]],
       "e" => [["0", "."], [".", "0"], [".", "."]],
-      "f" => [["0","0"], ["0", "."], [".", "."]],
+      "f" => [["0", "0"], ["0", "."], [".", "."]],
       "g" => [["0", "0"], ["0", "0"], [".", "."]],
       "h" => [["0", "."], ["0", "0"], [".", "."]],
       "i" => [[".", "0"], ["0", "."], [".", "."]],
@@ -37,10 +35,11 @@ class Dictionary
   end
 
   def english_to_braille(character)
-    @alphabet[character]
+    alphabet[character]
   end
 
   def braille_to_english(character)
-    @alphabet.key(character)
+    alphabet.key(character)
   end
+
 end

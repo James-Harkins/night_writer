@@ -3,11 +3,12 @@ require 'pry'
 
 class EnglishFileReader
 
-  attr_reader :filename, :dictionary
+  include Dictionary
+
+  attr_reader :filename
 
   def initialize(filename)
     @filename = filename
-    @dictionary = Dictionary.new
   end
 
   def read(filename)
@@ -24,11 +25,7 @@ class EnglishFileReader
 
   def create_new_braille_file(new_filename)
     new_file = File.open(new_filename, "w")
-    convert_to_lines(read(@filename)).each do |line|
-      convert_to_braille(line).each do |braille_character|
-        new_file.write(braille_character.join + "\n")
-      end
-    end
+    create_braille_message.each {|line| new_file.write(line)}
     new_file.close
     new_file
   end
@@ -36,9 +33,9 @@ class EnglishFileReader
   def convert_to_braille(text)
     rows = [[], [], []]
     text.each do |character|
-      rows[0] << @dictionary.english_to_braille(character)[0].join
-      rows[1] << @dictionary.english_to_braille(character)[1].join
-      rows[2] << @dictionary.english_to_braille(character)[2].join
+      rows[0] << english_to_braille(character)[0].join
+      rows[1] << english_to_braille(character)[1].join
+      rows[2] << english_to_braille(character)[2].join
     end
     rows
   end
@@ -48,5 +45,15 @@ class EnglishFileReader
     text = text.split("")
     text.each_slice(40) {|line| lines << line}
     lines
+  end
+
+  def create_braille_message
+    braille_lines = []
+    convert_to_lines(read(@filename)).each do |line|
+      convert_to_braille(line).each do |braille_character|
+        braille_lines << braille_character.join + "\n"
+      end
+    end
+    braille_lines
   end
 end
