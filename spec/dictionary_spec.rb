@@ -8,6 +8,19 @@ RSpec.describe Dictionary do
     @filereader = EnglishFileReader.new("./message.txt")
   end
 
+  describe '#alphabet' do
+    it 'has a hash of english letter keys and braille character values' do
+      expected = @filereader.alphabet.keys.length == @filereader.alphabet.keys.uniq.length
+      expect(expected).to be(true)
+    end
+  end
+
+  describe '#capital_letters' do
+    it 'has an array of capital letters to check against' do
+      expect(@filereader.capital_letters.count).to eq(26)
+    end
+  end
+
   describe '#english_to_braille' do
     it 'can convert letters to braille' do
       expect(@filereader.english_to_braille("a")).to eq([["0", "."], [".", "."], [".", "."]])
