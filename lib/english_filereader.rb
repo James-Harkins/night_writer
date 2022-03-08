@@ -43,11 +43,7 @@ class EnglishFileReader
   def format_text_for_capitalization(text)
     text = text.split("")
     formatted_text = text.map do |character|
-      if capital_letters.include?(character)
-        character.downcase.prepend("^")
-      else
-        character
-      end
+      capital_letters.include?(character) ? character.downcase.prepend("^") : character
     end.join
     formatted_text = formatted_text.split("")
   end
