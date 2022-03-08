@@ -64,7 +64,7 @@ RSpec.describe BrailleFileReader do
 
       numeric_filereader = BrailleFileReader.new("./number_braille.txt")
       expect(numeric_filereader.convert_to_braille_characters).to be_a(Array)
-      expect(numeric_filereader.convert_to_braille_characters.count).to eq(16)
+      expect(numeric_filereader.convert_to_braille_characters.count).to eq(53)
       expect(numeric_filereader.convert_to_braille_characters[0]).to be_a(Array)
     end
   end
