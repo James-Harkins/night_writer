@@ -46,24 +46,9 @@ class BrailleFileReader
     lines = consolidate_lines
     braille_characters = []
     while lines[0][0]
-      if lines[0][0..1] == ".." && lines[1][0..1] == ".." && lines[2][0..1] == ".0"
-        braille_character = []
-        braille_character << lines[0].slice!(0..1).split("")
-        braille_character << lines[1].slice!(0..1).split("")
-        braille_character << lines[2].slice!(0..1).split("")
-        braille_character << lines[0].slice!(0..1).split("")
-        braille_character << lines[1].slice!(0..1).split("")
-        braille_character << lines[2].slice!(0..1).split("")
-        braille_characters << braille_character
-        braille_character = []
-      else
-        braille_character = []
-        braille_character << lines[0].slice!(0..1).split("")
-        braille_character << lines[1].slice!(0..1).split("")
-        braille_character << lines[2].slice!(0..1).split("")
-        braille_characters << braille_character
-        braille_character = []
-      end
+      lines[0][0..1] == ".." && lines[1][0..1] == ".." && lines[2][0..1] == ".0" ?
+      braille_characters << capitalized_braille_character_creator(lines) :
+      braille_characters << braille_character_creator(lines)
     end
     braille_characters
   end
