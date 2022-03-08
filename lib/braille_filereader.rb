@@ -62,7 +62,9 @@ class BrailleFileReader
   def convert_to_lines
     lines = []
     convert_to_english.each_slice(80) {|line| lines << line}
-    lines.map {|line| line.join + "\n"}
+    lines.map! {|line| line.join + "\n"}
+    lines[-1] = lines.last.delete("\n")
+    lines
   end
 
   def create_new_english_file(new_filename)
