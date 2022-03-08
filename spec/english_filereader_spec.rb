@@ -44,7 +44,8 @@ RSpec.describe EnglishFileReader do
   describe '#format_text_for_capitalization' do
     it 'can format text to prepare it for conversion to lines' do
       text = "We will always be so much more human than we wish to be"
-      expect(@filereader.format_text_for_capitalization(text).count).to eq(57)
+      expect(@filereader.format_text_for_capitalization(text).count).to eq(56)
+      expect(@filereader.format_text_for_capitalization(text)[0]).to eq("^")
     end
   end
 
