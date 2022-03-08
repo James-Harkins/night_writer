@@ -22,8 +22,8 @@ RSpec.describe Dictionary do
   end
 
   describe '#numbers' do
-    it 'has an array of digits to check against' do
-      expect(@filereader.capital_letters.count).to eq(9)
+    it 'has an hash of digit keys with letter values to check against' do
+      expect(@filereader.numbers.keys.count).to eq(9)
     end
   end
 
