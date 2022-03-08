@@ -40,10 +40,17 @@ class EnglishFileReader
     rows
   end
 
+  def format_text_for_capitalization(text)
+    text = text.split("")
+    formatted_text = text.map do |character|
+      capital_letters.include?(character) ? character.downcase.prepend("^") : character
+    end.join
+    formatted_text = formatted_text.split("")
+  end
+
   def convert_to_lines(text)
     lines = []
-    text = text.split("")
-    text.each_slice(40) {|line| lines << line}
+    format_text_for_capitalization(text).each_slice(40) {|line| lines << line}
     lines
   end
 

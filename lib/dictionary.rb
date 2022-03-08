@@ -30,16 +30,32 @@ module Dictionary
       "x" => [["0", "0"], [".", "."], ["0", "0"]],
       "y" => [["0", "0"], [".", "0"], ["0", "0"]],
       "z" => [["0", "."], [".", "0"], ["0", "0"]],
-      " " => [[".", "."], [".", "."], [".", "."]]
+      " " => [[".", "."], [".", "."], [".", "."]],
+      "^" => [[".", "."], [".", "."], [".", "0"]]
     }
   end
 
+  def capital_letters
+    ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+  end
+
   def english_to_braille(character)
-    alphabet[character]
+    if capital_letters.include?(character)
+      capital_letter = ["^", character.downcase]
+      capital_letter.flat_map {|letter| alphabet[letter]}
+    else
+      alphabet[character]
+    end
   end
 
   def braille_to_english(character)
-    alphabet.key(character)
+    if character[0] == [".", "."] && character[1] == [".", "."] && character[2] ==  [".", "0"]
+      3.times {character.shift}
+      alphabet.key(character).upcase
+    else
+      alphabet.key(character)
+    end
   end
 
 end
