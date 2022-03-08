@@ -36,9 +36,9 @@ RSpec.describe BrailleFileReader do
 
   describe '#braille_character_creator' do
     it 'can convert one string to a braille character' do
-      braille = "0....."
+      braille = ["0.", "..", ".."]
       expected = [["0", "."], [".", "."], [".", "."]]
-      expect(@braille_character_creator(braille)).to eq(expected)
+      expect(@filereader.braille_character_creator(braille)).to eq(expected)
     end
   end
 
