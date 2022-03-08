@@ -23,7 +23,12 @@ RSpec.describe BrailleFileReader do
 
   describe '#count_characters' do
     it 'can count the characters of the File object' do
-      expect(@filereader.count_characters(@filereader.filename)).to eq(57)
+      expect(@filereader.count_characters(@filereader.filename)).to eq(56)
+    end
+
+    it 'still works for numeric files' do
+      numeric_filereader = BrailleFileReader.new("./number_braille.txt")
+      expect(numeric_filereader.count_characters(numeric_filereader.filename)).to eq(53)
     end
   end
 

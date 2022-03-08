@@ -19,8 +19,7 @@ class BrailleFileReader
   end
 
   def count_characters(filename)
-    text = read(filename)
-    text.map {|line| line.length}.sum / 6
+    convert_to_english.count
   end
 
   def consolidate_lines
