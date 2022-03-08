@@ -36,6 +36,12 @@ class BrailleFileReader
     braille_character
   end
 
+  def capitalized_braille_character_creator(braille_lines)
+    braille_character = []
+    2.times {braille_lines.each {|line| braille_character << line.slice!(0..1).split("")}}
+    braille_character
+  end
+
   def convert_to_braille_characters
     lines = consolidate_lines
     braille_characters = []
