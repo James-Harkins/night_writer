@@ -56,7 +56,7 @@ class EnglishFileReader
 
   def convert_to_lines(text)
     lines = []
-    format_text_for_capitalization(text).each_slice(40) {|line| lines << line}
+    format_text_for_numbers(text).each_slice(40) {|line| lines << line}
     lines
   end
 

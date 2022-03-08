@@ -59,7 +59,6 @@ RSpec.describe EnglishFileReader do
     it 'can handle inputs of numbers, lower-case letters, and capital-letters' do
       text = "9 to the Race of Men"
       expect(@filereader.format_text_for_numbers(text).count).to eq(23)
-      binding.pry
       expect(@filereader.format_text_for_numbers(text)[0]).to eq("#")
     end
   end
