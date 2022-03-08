@@ -42,19 +42,17 @@ RSpec.describe BrailleFileReader do
     end
   end
 
-  describe '#capitalized_braille_character_creator' do
+  describe '#prepended_braille_character_creator' do
     it 'can convert a string to a braille character with the shift prependment' do
-      braille = ["..", "..", ".0", "0.", "..", ".."]
+      braille = ["..0.", "....", ".0.."]
       expected = [[".", "."], [".", "."], [".", "0"], ["0", "."], [".", "."], [".", "."]]
-      expect(@filereader.braille_character_creator(braille)).to eq(expected)
+      expect(@filereader.prepended_braille_character_creator(braille)).to eq(expected)
     end
-  end
 
-  describe '#numeric_braille_character_creator' do
-    it 'can convert a string to a braille character with the number prependment' do
-      braille = [".0", ".0", "00", "0.", "..", ".."]
+    it 'can support numbers' do
+      braille = [".00.", ".0..", "00.."]
       expected = [[".", "0"], [".", "0"], ["0", "0"], ["0", "."], [".", "."], [".", "."]]
-      expect(@filereader.braille_character_creator(braille)).to eq(expected)
+      expect(@filereader.prepended_braille_character_creator(braille)).to eq(expected)
     end
   end
 
