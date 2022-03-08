@@ -52,7 +52,14 @@ RSpec.describe EnglishFileReader do
   describe '#format_text_for_numbers' do
     it 'can format text to prepare it for conversion to lines' do
       text = "24 7 365"
-      expect(@filereader.format_text_for_numbers(text).count).to eq(13)
+      expect(@filereader.format_text_for_numbers(text).count).to eq(14)
+      expect(@filereader.format_text_for_numbers(text)[0]).to eq("#")
+    end
+
+    it 'can handle inputs of numbers, lower-case letters, and capital-letters' do
+      text = "9 to the Race of Men"
+      expect(@filereader.format_text_for_numbers(text).count).to eq(23)
+      binding.pry
       expect(@filereader.format_text_for_numbers(text)[0]).to eq("#")
     end
   end
