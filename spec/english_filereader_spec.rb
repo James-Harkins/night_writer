@@ -41,6 +41,13 @@ RSpec.describe EnglishFileReader do
     end
   end
 
+  describe '#format_text_for_capitalization' do
+    it 'can format text to prepare it for conversion to lines' do
+      text = "We will always be so much more human than we wish to be"
+      expect(@filereader.format_text_for_capitalization(text).count).to eq(57)
+    end
+  end
+
   describe '#convert_to_lines' do
     it 'can create correctly nested arrays for inputs with more than 40 characters' do
       text = "We will always be so much more human than we wish to be"
