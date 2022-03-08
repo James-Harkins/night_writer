@@ -21,6 +21,12 @@ RSpec.describe Dictionary do
     end
   end
 
+  describe '#numbers' do
+    it 'has an array of digits to check against' do
+      expect(@filereader.capital_letters.count).to eq(9)
+    end
+  end
+
   describe '#english_to_braille' do
     it 'can convert letters to braille' do
       expect(@filereader.english_to_braille("a")).to eq([["0", "."], [".", "."], [".", "."]])
@@ -29,6 +35,11 @@ RSpec.describe Dictionary do
     it 'supports capitalization' do
       expected = [[".", "."], [".", "."], [".", "0"], ["0", "."], [".", "."], [".", "."]]
       expect(@filereader.english_to_braille("A")).to eq(expected)
+    end
+
+    it 'supports numbers' do
+      expected = [[".", "0"], [".", "0"], ["0", "0"], ["0", "."], [".", "."], [".", "."]]
+      expect(@filereader.english_to_braille("1")).to eq(expected)
     end
   end
 
@@ -40,6 +51,11 @@ RSpec.describe Dictionary do
     it 'supports capitalization' do
       braille = [[".", "."], [".", "."], [".", "0"], ["0", "."], [".", "."], [".", "."]]
       expect(@filereader.braille_to_english(braille)).to eq("A")
+    end
+
+    it 'supports capitalization' do
+      braille = [[".", "0"], [".", "0"], ["0", "0"], ["0", "."], [".", "."], [".", "."]]
+      expect(@filereader.braille_to_english(braille)).to eq("1")
     end
   end
 end
