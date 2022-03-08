@@ -36,7 +36,7 @@ class BrailleFileReader
     braille_character
   end
 
-  def capitalized_braille_character_creator(braille_lines)
+  def prepended_braille_character_creator(braille_lines)
     braille_character = []
     2.times {braille_lines.each {|line| braille_character << line.slice!(0..1).split("")}}
     braille_character
@@ -46,8 +46,9 @@ class BrailleFileReader
     lines = consolidate_lines
     braille_characters = []
     while lines[0][0]
-      lines[0][0..1] == ".." && lines[1][0..1] == ".." && lines[2][0..1] == ".0" ?
-      braille_characters << capitalized_braille_character_creator(lines) :
+      lines[0][0..1] == ".." && lines[1][0..1] == ".." && lines[2][0..1] == ".0" ||
+      lines[0][0..1] == ".0" && lines[1][0..1] == ".0" && lines[2][0..1] == "00" ?
+      braille_characters << prepended_braille_character_creator(lines) :
       braille_characters << braille_character_creator(lines)
     end
     braille_characters

@@ -31,7 +31,8 @@ module Dictionary
       "y" => [["0", "0"], [".", "0"], ["0", "0"]],
       "z" => [["0", "."], [".", "0"], ["0", "0"]],
       " " => [[".", "."], [".", "."], [".", "."]],
-      "^" => [[".", "."], [".", "."], [".", "0"]]
+      "^" => [[".", "."], [".", "."], [".", "0"]],
+      "#" => [[".", "0"], [".", "0"], ["0", "0"]]
     }
   end
 
@@ -40,10 +41,27 @@ module Dictionary
     "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
   end
 
+  def numbers
+    {
+      "1" => "a",
+      "2" => "b",
+      "3" => "c",
+      "4" => "d",
+      "5" => "e",
+      "6" => "f",
+      "7" => "g",
+      "8" => "h",
+      "9" => "i"
+    }
+  end
+
   def english_to_braille(character)
     if capital_letters.include?(character)
       capital_letter = ["^", character.downcase]
       capital_letter.flat_map {|letter| alphabet[letter]}
+    elsif numbers.keys.include?(character)
+      number = ["#", numbers[character].downcase]
+      number.flat_map {|number| alphabet[number]}
     else
       alphabet[character]
     end
@@ -53,6 +71,9 @@ module Dictionary
     if character[0] == [".", "."] && character[1] == [".", "."] && character[2] ==  [".", "0"]
       3.times {character.shift}
       alphabet.key(character).upcase
+    elsif character[0] == [".", "0"] && character[1] == [".", "0"] && character[2] ==  ["0", "0"]
+      3.times {character.shift}
+      numbers.key(alphabet.key(character))
     else
       alphabet.key(character)
     end

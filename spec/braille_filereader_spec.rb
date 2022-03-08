@@ -42,11 +42,17 @@ RSpec.describe BrailleFileReader do
     end
   end
 
-  describe '#capitalized_braille_character_creator' do
+  describe '#prepended_braille_character_creator' do
     it 'can convert a string to a braille character with the shift prependment' do
-      braille = ["..", "..", ".0", "0.", "..", ".."]
+      braille = ["..0.", "....", ".0.."]
       expected = [[".", "."], [".", "."], [".", "0"], ["0", "."], [".", "."], [".", "."]]
-      expect(@filereader.braille_character_creator(braille)).to eq(expected)
+      expect(@filereader.prepended_braille_character_creator(braille)).to eq(expected)
+    end
+
+    it 'can support numbers' do
+      braille = [".00.", ".0..", "00.."]
+      expected = [[".", "0"], [".", "0"], ["0", "0"], ["0", "."], [".", "."], [".", "."]]
+      expect(@filereader.prepended_braille_character_creator(braille)).to eq(expected)
     end
   end
 
@@ -55,6 +61,11 @@ RSpec.describe BrailleFileReader do
       expect(@filereader.convert_to_braille_characters).to be_a(Array)
       expect(@filereader.convert_to_braille_characters.count).to eq(56)
       expect(@filereader.convert_to_braille_characters[0]).to be_a(Array)
+
+      numeric_filereader = BrailleFileReader.new("./number_braille.txt")
+      expect(numeric_filereader.convert_to_braille_characters).to be_a(Array)
+      expect(numeric_filereader.convert_to_braille_characters.count).to eq(53)
+      expect(numeric_filereader.convert_to_braille_characters[0]).to be_a(Array)
     end
   end
 

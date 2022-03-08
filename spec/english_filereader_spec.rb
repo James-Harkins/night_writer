@@ -49,6 +49,20 @@ RSpec.describe EnglishFileReader do
     end
   end
 
+  describe '#format_text_for_numbers' do
+    it 'can format text to prepare it for conversion to lines' do
+      text = "24 7 365"
+      expect(@filereader.format_text_for_numbers(text).count).to eq(14)
+      expect(@filereader.format_text_for_numbers(text)[0]).to eq("#")
+    end
+
+    it 'can handle inputs of numbers, lower-case letters, and capital-letters' do
+      text = "9 to the Race of Men"
+      expect(@filereader.format_text_for_numbers(text).count).to eq(23)
+      expect(@filereader.format_text_for_numbers(text)[0]).to eq("#")
+    end
+  end
+
   describe '#convert_to_lines' do
     it 'can create correctly nested arrays for inputs with more than 40 characters' do
       text = "We will always be so much more human than we wish to be"

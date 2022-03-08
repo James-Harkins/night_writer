@@ -44,13 +44,19 @@ class EnglishFileReader
     text = text.split("")
     formatted_text = text.map do |character|
       capital_letters.include?(character) ? character.downcase.prepend("^") : character
-    end.join
-    formatted_text = formatted_text.split("")
+    end.join.split("")
+  end
+
+  def format_text_for_numbers(text)
+    text = format_text_for_capitalization(text)
+    formatted_text = text.map do |character|
+      numbers.include?(character) ? numbers[character].prepend("#") : character
+    end.join.split("")
   end
 
   def convert_to_lines(text)
     lines = []
-    format_text_for_capitalization(text).each_slice(40) {|line| lines << line}
+    format_text_for_numbers(text).each_slice(40) {|line| lines << line}
     lines
   end
 
