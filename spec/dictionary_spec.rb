@@ -53,7 +53,7 @@ RSpec.describe Dictionary do
       expect(@filereader.braille_to_english(braille)).to eq("A")
     end
 
-    it 'supports capitalization' do
+    it 'supports numbers' do
       braille = [[".", "0"], [".", "0"], ["0", "0"], ["0", "."], [".", "."], [".", "."]]
       expect(@filereader.braille_to_english(braille)).to eq("1")
     end
