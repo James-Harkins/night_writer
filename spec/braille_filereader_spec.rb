@@ -34,6 +34,14 @@ RSpec.describe BrailleFileReader do
     end
   end
 
+  describe '#braille_character_creator' do
+    it 'can convert one string to a braille character' do
+      braille = "0....."
+      expected = [["0", "."], [".", "."], [".", "."]]
+      expect(@braille_character_creator(braille)).to eq(expected)
+    end
+  end
+
   describe '#convert_to_braille_characters' do
     it 'can convert consolidated_lines to an array of single braille characters' do
       expect(@filereader.convert_to_braille_characters).to be_a(Array)
